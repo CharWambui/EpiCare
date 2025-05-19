@@ -7,6 +7,50 @@ import 'package:care/core/database/entities/scan.dart';
 import 'package:care/core/navigation/app_router.dart';
 import 'package:care/core/providers/database_providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+
+class BlueDotMarker extends StatelessWidget {
+  final double size; // Total size of the marker widget
+
+  const BlueDotMarker({Key? key, this.size = 30.0}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final double outerRadius = size / 2;
+    final double innerRadius = size / 6; // smaller dot inside
+
+    return SizedBox(
+      width: size,
+      height: size,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          // Outer circle (blue border, transparent fill)
+          Container(
+            width: size,
+            height: size,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.blue, width: 3),
+              color: Colors.transparent,
+            ),
+          ),
+
+          // Inner filled dot (solid blue)
+          Container(
+            width: innerRadius * 2,
+            height: innerRadius * 2,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.blue,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
